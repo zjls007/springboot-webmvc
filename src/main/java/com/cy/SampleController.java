@@ -46,4 +46,9 @@ public class SampleController {
         return "index";
     }
 
+    @RequestMapping("ftl")
+    public String ftl() {
+        return "ftl";
+    }
+
 }
