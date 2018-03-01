@@ -1,7 +1,7 @@
 package com.cy;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import com.cy.dao.TaskDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,22 +10,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by zxj on 2018/2/27.
+ * @author zxj
+ * @date 2018/3/1 9:58
  */
 @Controller
-@EnableAutoConfiguration
 public class SampleController {
+
+    @Autowired
+    private TaskDAO taskDAO;
 
     @RequestMapping("a")
     @ResponseBody
     public String home() {
-        return "郑先建!";
+        return taskDAO.getNum(1L);
     }
 
     @RequestMapping("b")
     @ResponseBody
     public Map<String, String> b() {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>(2);
         map.put("a", "a");
         map.put("b", "b");
         return map;
@@ -41,11 +44,6 @@ public class SampleController {
     @RequestMapping("index")
     public String index() {
         return "index";
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SampleController.class, args);
     }
 
 }
