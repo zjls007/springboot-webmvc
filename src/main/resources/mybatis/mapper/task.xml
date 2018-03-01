@@ -7,7 +7,7 @@
         <result column="task_num" property="taskNum" />
     </resultMap>
 
-    <select id="getNum" resultType="String">
+    <select id="getNum" resultType="string">
         SELECT task_num FROM task WHERE id = #{id}
     </select>
 
